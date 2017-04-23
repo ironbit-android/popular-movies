@@ -11,4 +11,12 @@
     <!-- Add 'Api Key' for request -->
     <string name="web_request_api_key"></string>
 
+    <!-- Action Bar | label of icon 'search action' -->
+    <string name="menu_action_search">Search</string>
+
+    <!-- Action Bar | label of icon 'search action popular' -->
+    <string name="menu_action_search_popular">Popular</string>
+
+    <!-- Action Bar | label of icon 'search action toprated' -->
+    <string name="menu_action_search_toprated">Top Rated</string>
 </resources>
