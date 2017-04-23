@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">PopularMovies</string>
 
+    <!-- Name Movie Activity -->
     <string name="movie_layout_name">Movie Detail</string>
+
+    <!-- Name Main Activity -->
     <string name="main_layout_name">Popular Movies</string>
+
+    <!-- Request Movie Information to MovieDB -->
+    <!-- Add 'Api Key' for request -->
+    <string name="web_request_api_key"></string>
+
 </resources>

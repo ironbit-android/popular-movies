@@ -27,7 +27,7 @@ public class MovieData {
      * The user voting.
      * Requirements: user rating.
      */
-    private float mVoteAverage;
+    private double mVoteAverage;
 
     /**
      * The date of the release of the movie.
@@ -47,7 +47,7 @@ public class MovieData {
     public MovieData(String originalTitle,
                      String posterPath,
                      String overview,
-                     float voteAverage,
+                     double voteAverage,
                      String releaseDate) {
         mOriginalTitle = originalTitle;
         mPosterPath = posterPath;
@@ -82,10 +82,10 @@ public class MovieData {
 
     /**
      * Get user rating of the movie.
-     * Float number #0.0 format.
+     * Double number #0.0 format.
      * @return {@link #mVoteAverage}
      */
-    public float getVoteAverage() {
+    public double getVoteAverage() {
         return mVoteAverage;
     }
 

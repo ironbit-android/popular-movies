@@ -23,7 +23,7 @@ public final class MovieFactory {
     public static MovieData createMovie(String originalTitle,
                                         String posterPath,
                                         String overview,
-                                        float voteAverage,
+                                        double voteAverage,
                                         String releaseDate) {
         return new MovieData(originalTitle, posterPath, overview, voteAverage, releaseDate);
     }
@@ -40,7 +40,7 @@ public final class MovieFactory {
     public static MovieDecorator createDecorator(String originalTitle,
                                                  String posterPath,
                                                  String overview,
-                                                 float voteAverage,
+                                                 double voteAverage,
                                                  String releaseDate) {
         return new MovieDecorator(createMovie(originalTitle, posterPath, overview, voteAverage, releaseDate));
     }
