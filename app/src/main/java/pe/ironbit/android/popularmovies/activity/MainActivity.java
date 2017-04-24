@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         container.setLayoutManager(layoutManager);
 
         // create adapter and register it
-        mMovieAdapter = new MovieAdapter(ImageSettings.URI, ImageSettings.W185);
+        mMovieAdapter = new MovieAdapter(getApplicationContext(), ImageSettings.URI, ImageSettings.W185);
         container.setAdapter(mMovieAdapter);
 
         // create AsyncTask and update MovieAdapter

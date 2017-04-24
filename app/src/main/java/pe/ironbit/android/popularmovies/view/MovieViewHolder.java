@@ -25,15 +25,13 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * Unique constructor.
-     * @param context    The context of the activity.
-     * @param itemView   The current layout item view.
-     * @param imageUri   The uri for retrieve images from internet.
-     * @param imageSize  The size of the images.
+     * @param itemView      The current layout item view.
+     * @param imageAdapter  Helper class for loading images on ImageView.
      */
-    public MovieViewHolder(Context context, View itemView, String imageUri, String imageSize) {
+    public MovieViewHolder(View itemView, ImageAdapter imageAdapter) {
         super(itemView);
 
-        mImageAdapter = new ImageAdapter(context, imageUri, imageSize);
+        mImageAdapter = imageAdapter;
         mImage = (ImageView) itemView.findViewById(R.id.view_movie);
     }
 

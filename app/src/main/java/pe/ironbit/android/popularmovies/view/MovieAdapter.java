@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.ironbit.android.popularmovies.R;
+import pe.ironbit.android.popularmovies.images.ImageAdapter;
 import pe.ironbit.android.popularmovies.model.MovieData;
 
 /**
@@ -20,18 +21,11 @@ import pe.ironbit.android.popularmovies.model.MovieData;
  *
  */
 public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implements ModelUpdate {
-
     /**
-     * Uri base for the images.
-     * The images are retrieved from internet.
+     * Helper class for image resources.
+     * @see pe.ironbit.android.popularmovies.images.ImageAdapter
      */
-    private String mImageUri;
-
-    /**
-     * The size of the images.
-     * The images are retrieved from internet.
-     */
-    private String mImageSize;
+    private ImageAdapter mImageAdapter;
 
     /**
      * The data or the list of movies retrieved from internet.
@@ -40,13 +34,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
 
     /**
      * Unique constructor.
-     * @param imageUri  {@link #mImageUri}
-     * @param imageSize {@link #mImageSize}
+     * @param context   The context of the activity.
+     * @param imageUri  The uri for retrieve images from internet.
+     * @param imageSize The size of the images.
      */
-    public MovieAdapter(String imageUri, String imageSize) {
-        mImageUri = imageUri;
-        mImageSize = imageSize;
+    public MovieAdapter(Context context, String imageUri, String imageSize) {
         mMovies = new ArrayList<>();
+        mImageAdapter = new ImageAdapter(context, imageUri, imageSize);
     }
 
     /**
@@ -77,7 +71,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
         Context context = parent.getContext();
 
         View view = LayoutInflater.from(context).inflate(R.layout.main_view_item, parent, false);
-        MovieViewHolder viewHolder = new MovieViewHolder(context, view, mImageUri, mImageSize);
+        MovieViewHolder viewHolder = new MovieViewHolder(view, mImageAdapter);
 
         return viewHolder;
     }
