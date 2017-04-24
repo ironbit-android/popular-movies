@@ -13,8 +13,10 @@ import pe.ironbit.android.popularmovies.request.Selector;
 import pe.ironbit.android.popularmovies.request.Task;
 import pe.ironbit.android.popularmovies.view.MovieAdapter;
 
+/**
+ * It shows the movies in a grid matrix.
+ */
 public class MainActivity extends AppCompatActivity {
-
     /**
      * Required for Web Request for MovieDB.
      * The key must be set in the string.xml file in 'web_request_api_key'
