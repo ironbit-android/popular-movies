@@ -2,7 +2,6 @@ package pe.ironbit.android.popularmovies.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mApiKey = getString(R.string.web_request_api_key);
+
+//        ImageView view = (ImageView) findViewById(R.id.image);
+//        ImageAdapter adapter = new ImageAdapter(MainActivity.this, ImageSettings.URI, ImageSettings.W185);
+//        adapter.setImage(view, "nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg");
     }
 
     /**
