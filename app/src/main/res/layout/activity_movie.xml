@@ -11,7 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        tools:text="Interstellar" />
+        tools:text="Interstellar"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="34sp"
+        android:padding="16dp"
+        android:textColor="@color/blue_grey_050"
+        android:background="@color/blue_grey_700"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,20 +30,24 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            tools:src="@drawable/interstellar_w185" />
+            tools:src="@drawable/interstellar_w185"
+            android:padding="16dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/movie_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                tools:text="2016" />
+                tools:text="2016"
+                android:padding="8dp"
+                android:textSize="24sp"/>
 
             <!--
             <TextView
@@ -54,7 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                tools:text="8.0" />
+                tools:text="8.0"
+                android:padding="8dp"
+                android:textSize="22sp"/>
 
         </LinearLayout>
 
@@ -71,7 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Synopsis" />
+            tools:text="Synopsis"
+            android:padding="16dp"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
