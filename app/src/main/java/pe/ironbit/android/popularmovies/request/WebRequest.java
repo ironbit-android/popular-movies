@@ -106,7 +106,7 @@ public class WebRequest {
      */
     private static Uri createUri(Selector selector, String apiKey) {
         Uri.Builder builder = null;
-        if (selector == Selector.POPULAR) {
+        if (selector.is(Selector.POPULAR)) {
             builder = Uri.parse(QUERY_SCHEMA_POPULAR).buildUpon();
         } else {
             builder = Uri.parse(QUERY_SCHEMA_TOPRATED).buildUpon();

@@ -2,12 +2,16 @@ package pe.ironbit.android.popularmovies.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import pe.ironbit.android.popularmovies.R;
+import pe.ironbit.android.popularmovies.images.ImageSettings;
 import pe.ironbit.android.popularmovies.request.Selector;
 import pe.ironbit.android.popularmovies.request.Task;
+import pe.ironbit.android.popularmovies.view.MovieAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,19 +22,35 @@ public class MainActivity extends AppCompatActivity {
     private String mApiKey;
 
     /**
-     *
-     * @param savedInstanceState
+     * The size of the grid
      */
+    private static int MATRIX_SIZE = 2;
+
+    /**
+     * View Adapter used to store information retrieved from internet
+     */
+    private MovieAdapter mMovieAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mApiKey = getString(R.string.web_request_api_key);
+        // get main container
+        RecyclerView container = (RecyclerView) findViewById(R.id.main_view);
+        container.setHasFixedSize(true);
 
-//        ImageView view = (ImageView) findViewById(R.id.image);
-//        ImageAdapter adapter = new ImageAdapter(MainActivity.this, ImageSettings.URI, ImageSettings.W185);
-//        adapter.setImage(view, "nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg");
+        // create layout and register it
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, MATRIX_SIZE);
+        container.setLayoutManager(layoutManager);
+
+        // create adapter and register it
+        mMovieAdapter = new MovieAdapter(ImageSettings.URI, ImageSettings.W185);
+        container.setAdapter(mMovieAdapter);
+
+        // create AsyncTask and update MovieAdapter
+        mApiKey = getString(R.string.web_request_api_key);
+        new Task(mApiKey, mMovieAdapter).execute(Selector.createPopular());
     }
 
     /**
@@ -53,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int resourceId = item.getItemId();
         if (resourceId == R.id.menu_action_search_popular) {
-            new Task(mApiKey).execute(Selector.POPULAR);
+            new Task(mApiKey, mMovieAdapter).execute(Selector.createPopular());
         }
         else if (resourceId == R.id.menu_action_search_toprated) {
-            new Task(mApiKey).execute(Selector.TOPRATED);
+            new Task(mApiKey, mMovieAdapter).execute(Selector.createTopRated());
         }
         return super.onOptionsItemSelected(item);
     }
