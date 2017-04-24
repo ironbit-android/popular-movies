@@ -1,6 +1,7 @@
 package pe.ironbit.android.popularmovies.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.ironbit.android.popularmovies.R;
+import pe.ironbit.android.popularmovies.activity.MovieActivity;
 import pe.ironbit.android.popularmovies.images.ImageAdapter;
 import pe.ironbit.android.popularmovies.model.MovieData;
 
@@ -33,14 +35,37 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
     private List<MovieData> mMovies;
 
     /**
-     * Unique constructor.
-     * @param context   The context of the activity.
-     * @param imageUri  The uri for retrieve images from internet.
-     * @param imageSize The size of the images.
+     * Interface event for all ViewHolders.
+     * The definition is in the constructor.
      */
-    public MovieAdapter(Context context, String imageUri, String imageSize) {
+    private View.OnClickListener mOnClickListener;
+
+    /**
+     * Unique constructor.
+     * @param context        The context of the activity.
+     * @param recyclerView   The main container.
+     * @param imageUri       The uri for retrieve images from internet.
+     * @param imageSize      The size of the images.
+     */
+    public MovieAdapter(final Context context, final RecyclerView recyclerView, String imageUri, String imageSize) {
         mMovies = new ArrayList<>();
         mImageAdapter = new ImageAdapter(context, imageUri, imageSize);
+
+        mOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get movie data
+                int index = recyclerView.getChildLayoutPosition(view);
+                MovieData movie = mMovies.get(index);
+
+                // create intent and put movie data.
+                Intent intent = new Intent(context, MovieActivity.class);
+                intent.putExtra(MovieData.class.getSimpleName(), movie);
+
+                // call the new activity.
+                context.startActivity(intent);
+            }
+        };
     }
 
     /**
@@ -72,6 +97,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
 
         View view = LayoutInflater.from(context).inflate(R.layout.main_view_item, parent, false);
         MovieViewHolder viewHolder = new MovieViewHolder(view, mImageAdapter);
+        view.setOnClickListener(mOnClickListener);
 
         return viewHolder;
     }

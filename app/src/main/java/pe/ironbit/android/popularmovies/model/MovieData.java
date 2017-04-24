@@ -1,10 +1,12 @@
 package pe.ironbit.android.popularmovies.model;
 
+import java.io.Serializable;
+
 /**
  * Simple POJO class for MovieData information.
  * No setter methods.
  */
-public class MovieData {
+public class MovieData implements Serializable {
     /**
      * The original title of the movie.
      * Requirements: original title.

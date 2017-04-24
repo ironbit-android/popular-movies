@@ -37,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // get main container
-        RecyclerView container = (RecyclerView) findViewById(R.id.main_view);
-        container.setHasFixedSize(true);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.main_view);
+        recyclerView.setHasFixedSize(true);
 
         // create layout and register it
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, MATRIX_SIZE);
-        container.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
         // create adapter and register it
-        mMovieAdapter = new MovieAdapter(getApplicationContext(), ImageSettings.URI, ImageSettings.W185);
-        container.setAdapter(mMovieAdapter);
+        mMovieAdapter = new MovieAdapter(getApplicationContext(), recyclerView, ImageSettings.URI, ImageSettings.W185);
+        recyclerView.setAdapter(mMovieAdapter);
 
         // create AsyncTask and update MovieAdapter
         mApiKey = getString(R.string.web_request_api_key);

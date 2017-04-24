@@ -17,14 +17,14 @@ public class ImageAdapter {
     private String mUriBase;
 
     /**
-     * The context of the application.
-     */
-    private Context mContext;
-
-    /**
      * The size of the image.
      */
     private String mImageSize;
+
+    /**
+     * The context of the application.
+     */
+    private final Context mContext;
 
     /**
      * Unique Constructor
@@ -32,7 +32,7 @@ public class ImageAdapter {
      * @param uriBase   {@link #mUriBase}
      * @param imageSize {@link #mImageSize}
      */
-    public ImageAdapter(Context context, String uriBase, String imageSize) {
+    public ImageAdapter(final Context context, String uriBase, String imageSize) {
         mContext = context;
         mUriBase = uriBase;
         mImageSize = imageSize;
