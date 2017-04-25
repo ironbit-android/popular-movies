@@ -1,6 +1,5 @@
 package pe.ironbit.android.popularmovies.view;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,14 +18,16 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * Helper class for image resources.
+     *
      * @see ImageAdapter
      */
     private ImageAdapter mImageAdapter;
 
     /**
      * Unique constructor.
-     * @param itemView      The current layout item view.
-     * @param imageAdapter  Helper class for loading images on ImageView.
+     *
+     * @param itemView     The current layout item view.
+     * @param imageAdapter Helper class for loading images on ImageView.
      */
     public MovieViewHolder(View itemView, ImageAdapter imageAdapter) {
         super(itemView);
@@ -37,6 +38,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * It Updates the ImageView with the information of the imagePath.
+     *
      * @param imagePath String with the code of the poster movie.
      */
     void bind(String imagePath) {
