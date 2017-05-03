@@ -2,4 +2,4 @@
 First Udacity Project in Nanodegree Program
 
 ### Api Key for MovieDB
-- In file string.xml change the key 'web_request_api_key' with your 'Api Key'.
+- In order to request information of the movie database, it is required to add the 'Api Key' into the key 'web_request_api_key' in the string.xml file. 
