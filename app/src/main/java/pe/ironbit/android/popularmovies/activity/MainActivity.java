@@ -1,7 +1,8 @@
 package pe.ironbit.android.popularmovies.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -24,9 +25,19 @@ public class MainActivity extends AppCompatActivity {
     private String mApiKey;
 
     /**
+     * Set value of 2 columns when orientation is portrait.
+     */
+    private static final int PORTRAIT_MATRIX_SIZE = 2;
+
+    /**
+     * Set value of 3 columns when orientation is landscape.
+     */
+    private static final int LANDSCAPE_MATRIX_SIZE = 3;
+
+    /**
      * The size of the grid
      */
-    private static int MATRIX_SIZE = 2;
+    private static int MATRIX_SIZE = PORTRAIT_MATRIX_SIZE;
 
     /**
      * View Adapter used to store information retrieved from internet
@@ -41,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         // get main container
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.main_view);
         recyclerView.setHasFixedSize(true);
+
+        // set number of columns for movie to display
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            MATRIX_SIZE = LANDSCAPE_MATRIX_SIZE;
+        } else {
+            MATRIX_SIZE = PORTRAIT_MATRIX_SIZE;
+        }
 
         // create layout and register it
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, MATRIX_SIZE);
