@@ -19,7 +19,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:textColor="@color/blue_grey_050"
-            android:textSize="34sp"
+            android:textSize="30sp"
             tools:text="Interstellar" />
 
         <LinearLayout
@@ -45,29 +45,36 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:text="@string/movie_activity_release_date"
+                    android:textSize="16sp" />
+
+                <TextView
                     android:id="@+id/movie_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:paddingBottom="8dp"
                     android:textSize="24sp"
                     tools:text="2016" />
 
-                <!--
                 <TextView
-                    android:id="@+id/movie_duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    tools:text="1h 56min"/>
-                -->
+                    android:paddingBottom="2dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/movie_activity_vote_average"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/movie_rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="8dp"
                     android:textSize="22sp"
                     tools:text="8.0" />
 
@@ -79,17 +86,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="1">
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:text="@string/movie_activity_movie_synopsis"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/movie_synopsis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.32"
                 android:gravity="center"
-                android:padding="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:textSize="20sp"
-                tools:text="Synopsis" />
+                tools:text="@string/movie_activity_synopsis_sample" />
 
         </LinearLayout>
 
