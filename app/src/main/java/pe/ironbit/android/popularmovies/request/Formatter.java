@@ -37,7 +37,8 @@ public final class Formatter {
             builder.clear();
             JSONObject object = results.getJSONObject(index);
 
-            builder.setOriginalTitle(object.getString("original_title"))
+            builder.setId(object.getString("id"))
+                   .setOriginalTitle(object.getString("original_title"))
                    .setPosterPath(object.getString("poster_path"))
                    .setOverview(object.getString("overview"))
                    .setVoteAverage(object.getDouble("vote_average"))

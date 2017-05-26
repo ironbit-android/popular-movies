@@ -8,11 +8,13 @@ import java.util.List;
 import pe.ironbit.android.popularmovies.model.video.VideoData;
 import pe.ironbit.android.popularmovies.request.base.VideoWebRequestService;
 import pe.ironbit.android.popularmovies.request.base.WebRequestService;
+import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
 
 /**
  * AsyncTask for trailer or video request from MovieDB database.
  */
-public class VideoWebRequestTask extends AsyncTask<String, Void, List<VideoData>>
+public class VideoWebRequestTask
+        extends AsyncTask<String, Void, List<VideoData>>
         implements WebRequestTask {
     /**
      * Store the ApiKey for Web Request.
@@ -26,13 +28,20 @@ public class VideoWebRequestTask extends AsyncTask<String, Void, List<VideoData>
     private boolean mIsActive;
 
     /**
+     * Store information when task finished.
+     */
+    private ModelUpdate mModelUpdate;
+
+    /**
      * Unique constructor.
      *
      * @param apiKey value required for access to movie database.
+     * @param model  Interface that store the information when the task finished.
      */
-    public VideoWebRequestTask(String apiKey) {
+    public VideoWebRequestTask(String apiKey, ModelUpdate model) {
         mApiKey = apiKey;
         mIsActive = false;
+        mModelUpdate = model;
     }
 
     /**
@@ -62,6 +71,7 @@ public class VideoWebRequestTask extends AsyncTask<String, Void, List<VideoData>
     @Override
     protected void onPostExecute(List<VideoData> list) {
         mIsActive = false;
+        mModelUpdate.update(list);
     }
 
     /**

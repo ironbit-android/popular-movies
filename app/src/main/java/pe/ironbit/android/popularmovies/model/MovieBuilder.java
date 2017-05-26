@@ -5,6 +5,11 @@ package pe.ironbit.android.popularmovies.model;
  */
 public class MovieBuilder {
     /**
+     * The identifier of the movie.
+     */
+    private String mId;
+
+    /**
      * The original title of the movie.
      * Requirements: original title.
      */
@@ -46,11 +51,23 @@ public class MovieBuilder {
      * Assign initial values to variables.
      */
     public void clear() {
+        mId = "";
         mOriginalTitle = "";
         mPosterPath = "";
         mOverview = "";
         mVoteAverage = 0.0f;
         mReleaseDate = "";
+    }
+
+    /**
+     * set the identifier of the movie.
+     *
+     * @param id {@link #mId}
+     * @return MovieBuilder
+     */
+    public MovieBuilder setId(String id) {
+        mId = id;
+        return this;
     }
 
     /**
@@ -108,6 +125,6 @@ public class MovieBuilder {
      * @return {@link MovieData}
      */
     public MovieData build() {
-        return MovieFactory.createMovie(mOriginalTitle, mPosterPath, mOverview, mVoteAverage, mReleaseDate);
+        return MovieFactory.createMovie(mId, mOriginalTitle, mPosterPath, mOverview, mVoteAverage, mReleaseDate);
     }
 }

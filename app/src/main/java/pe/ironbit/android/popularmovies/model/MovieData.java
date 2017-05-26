@@ -8,6 +8,11 @@ import java.io.Serializable;
  */
 public class MovieData implements Serializable {
     /**
+     * The identifier of the movie.
+     */
+    private String mId;
+
+    /**
      * The original title of the movie.
      * Requirements: original title.
      */
@@ -40,22 +45,34 @@ public class MovieData implements Serializable {
     /**
      * Unique constructor
      *
+     * @param id            The identifier of the movie.
      * @param originalTitle The original title of the movie.
      * @param posterPath    The thumbnail of the movie.
      * @param overview      The synopsis of the movie.
      * @param voteAverage   The user voting of the movie.
      * @param releaseDate   The date of the release of the movie.
      */
-    public MovieData(String originalTitle,
+    public MovieData(String id,
+                     String originalTitle,
                      String posterPath,
                      String overview,
                      double voteAverage,
                      String releaseDate) {
+        mId = id;
         mOriginalTitle = originalTitle;
         mPosterPath = posterPath;
         mOverview = overview;
         mVoteAverage = voteAverage;
         mReleaseDate = releaseDate;
+    }
+
+    /**
+     * Get the identifier of the movie
+     *
+     * @return {@link #mId}
+     */
+    public String getId() {
+        return mId;
     }
 
     /**
