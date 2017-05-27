@@ -1,6 +1,7 @@
 package pe.ironbit.android.popularmovies.view.video;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import pe.ironbit.android.popularmovies.R;
 import pe.ironbit.android.popularmovies.model.video.VideoData;
+import pe.ironbit.android.popularmovies.util.VideoUriUtil;
 import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder>
@@ -32,7 +34,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder>
         Context context = parent.getContext();
 
         View view = LayoutInflater.from(context).inflate(R.layout.module_movie_video, parent, false);
-        VideoViewHolder viewHolder = new VideoViewHolder(view);
+        VideoViewHolder viewHolder = new VideoViewHolder(view, context);
 
         return viewHolder;
     }
@@ -40,7 +42,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder>
     @Override
     public void onBindViewHolder(VideoViewHolder holder, int position) {
         VideoData data = mList.get(position);
-        holder.bind(data.getName(), data.getType());
+        Uri uri = VideoUriUtil.generateVideoUri(data);
+        holder.bind(data.getName(), data.getType(), uri);
     }
 
     @Override
