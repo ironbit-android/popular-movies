@@ -1,6 +1,10 @@
 package pe.ironbit.android.popularmovies.view.review;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +14,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
     /**
      * The web page of the review.
      */
-    private String mUrl;
+    private Uri mUri;
 
     /**
      * The name of the reviewer.
@@ -27,11 +31,24 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
      *
      * @param itemView the holder view.
      */
-    public ReviewViewHolder(View itemView) {
+    public ReviewViewHolder(View itemView, final Context context) {
         super(itemView);
 
         mAuthor = (TextView) itemView.findViewById(R.id.module_movie_review_author);
         mContent = (TextView) itemView.findViewById(R.id.module_movie_review_content);
+
+        View view = itemView.findViewById(R.id.module_movie_review_icon);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mUri == null || TextUtils.isEmpty(mUri.toString())) {
+                    return;
+                }
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, mUri);
+                context.startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -39,11 +56,11 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
      *
      * @param author  the author of the review.
      * @param content the content of the review.
-     * @param url     the url of the review.
+     * @param uri     the uri of the review.
      */
-    public void bind(String author, String content, String url) {
+    public void bind(String author, String content, Uri uri) {
         mAuthor.setText(author);
         mContent.setText(content);
-        mUrl = url;
+        mUri = uri;
     }
 }

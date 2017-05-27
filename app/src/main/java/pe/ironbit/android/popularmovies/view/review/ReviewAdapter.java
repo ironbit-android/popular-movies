@@ -1,6 +1,7 @@
 package pe.ironbit.android.popularmovies.view.review;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import java.util.List;
 import pe.ironbit.android.popularmovies.R;
 import pe.ironbit.android.popularmovies.model.review.ReviewData;
 import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
-import pe.ironbit.android.popularmovies.view.video.VideoViewHolder;
 
 public class ReviewAdapter
         extends RecyclerView.Adapter<ReviewViewHolder>
@@ -34,7 +34,7 @@ public class ReviewAdapter
         Context context = parent.getContext();
 
         View view = LayoutInflater.from(context).inflate(R.layout.module_movie_review, parent, false);
-        ReviewViewHolder viewHolder = new ReviewViewHolder(view);
+        ReviewViewHolder viewHolder = new ReviewViewHolder(view, context);
 
         return viewHolder;
     }
@@ -42,7 +42,8 @@ public class ReviewAdapter
     @Override
     public void onBindViewHolder(ReviewViewHolder holder, int position) {
         ReviewData data = mList.get(position);
-        holder.bind(data.getAuthor(), data.getContent(), data.getUrl());
+        Uri uri = Uri.parse(data.getUrl());
+        holder.bind(data.getAuthor(), data.getContent(), uri);
     }
 
     @Override

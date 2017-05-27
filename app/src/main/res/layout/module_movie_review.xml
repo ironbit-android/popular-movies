@@ -12,6 +12,7 @@
         android:padding="4dp">
 
         <ImageView
+            android:id="@+id/module_movie_review_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_link_black_48dp"/>
