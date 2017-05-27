@@ -4,19 +4,19 @@ import android.net.Uri;
 
 import java.util.List;
 
-import pe.ironbit.android.popularmovies.request.factory.VideoUriFactory;
-import pe.ironbit.android.popularmovies.request.parser.VideoWebRequestParser;
+import pe.ironbit.android.popularmovies.request.factory.ReviewUriFactory;
+import pe.ironbit.android.popularmovies.request.parser.ReviewWebRequestParser;
 import pe.ironbit.android.popularmovies.request.parser.WebRequestParser;
 
 /**
  * Implements the service for retrieve from the movie database (web
- * request) the movie trailers of a specific movie.
+ * request) the movie reviews of a specific movie.
  */
-public class VideoWebRequestService implements WebRequestService {
+public class ReviewWebRequestService implements WebRequestService {
     /**
-     * Unique constructor
+     * Unique constructor.
      */
-    public VideoWebRequestService() {
+    public ReviewWebRequestService() {
     }
 
     /**
@@ -25,12 +25,12 @@ public class VideoWebRequestService implements WebRequestService {
      *
      * @param apiKey  value required for access to movie database.
      * @param movieId optional value that is the movie id.
-     * @return the collection of VideoData.
+     * @return the collection of ReviewData.
      */
     @Override
     public List makeWebRequest(String apiKey, String movieId) {
-        Uri uri = VideoUriFactory.createVideoUri(apiKey, movieId);
-        WebRequestParser parser = new VideoWebRequestParser();
+        Uri uri = ReviewUriFactory.createReviewUri(apiKey, movieId);
+        WebRequestParser parser = new ReviewWebRequestParser();
         return WebRequestHelper.makeWebRequest(uri, parser);
     }
 }

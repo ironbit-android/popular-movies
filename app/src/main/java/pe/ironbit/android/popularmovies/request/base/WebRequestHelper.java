@@ -28,12 +28,13 @@ public class WebRequestHelper {
     private static final String LOG_TAG = WebRequestHelper.class.getSimpleName();
 
     /**
+     * Perform the web request and decode of the web response.
      *
-     * @param uri
-     * @param formatter
-     * @return
+     * @param uri    the uri for the web request.
+     * @param parser decode of the response to a list of data objects.
+     * @return List of data objects.
      */
-    public static List makeWebRequest(Uri uri, WebRequestParser formatter) {
+    public static List makeWebRequest(Uri uri, WebRequestParser parser) {
         URL url = null;
         try {
             url = createUrl(uri.toString());
@@ -56,7 +57,7 @@ public class WebRequestHelper {
 
         List list = null;
         try {
-            list = formatter.parseData(response);
+            list = parser.parseData(response);
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Problem parsing the JSON results.", e);
             return null;

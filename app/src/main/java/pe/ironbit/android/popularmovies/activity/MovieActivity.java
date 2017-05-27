@@ -11,6 +11,7 @@ import pe.ironbit.android.popularmovies.R;
 import pe.ironbit.android.popularmovies.images.ImageAdapter;
 import pe.ironbit.android.popularmovies.images.ImageSettings;
 import pe.ironbit.android.popularmovies.model.MovieData;
+import pe.ironbit.android.popularmovies.request.task.ReviewWebRequestTask;
 import pe.ironbit.android.popularmovies.request.task.VideoWebRequestTask;
 import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
 import pe.ironbit.android.popularmovies.view.video.VideoAdapter;
@@ -49,8 +50,16 @@ public class MovieActivity extends AppCompatActivity {
         String apiKey = getString(R.string.web_request_api_key);
 
         // Configure video section
-        ModelUpdate model = configVideoRecyclerView();
-        createVideoAsyncTask(model, apiKey, movie.getId());
+        {
+            ModelUpdate model = configVideoRecyclerView();
+            createVideoAsyncTask(model, apiKey, movie.getId());
+        }
+
+        // Configure review section
+        {
+            //ModelUpdate model = configReviewRecyclerView();
+            //createReviewAsyncTask(model, apiKey, movie.getId());
+        }
     }
 
     /**
@@ -81,5 +90,35 @@ public class MovieActivity extends AppCompatActivity {
      */
     protected void createVideoAsyncTask(ModelUpdate model, String apiKey, String id) {
         new VideoWebRequestTask(apiKey, model).start(id);
+    }
+
+    /**
+     * Configure the RecyclerView for the review section.
+     *
+     * @return The adapter of the RecyclerView
+     */
+    protected ModelUpdate configReviewRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_movie_review_section);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        VideoAdapter adapter = new VideoAdapter();
+        recyclerView.setAdapter(adapter);
+
+        return adapter;
+    }
+
+    /**
+     * Execute the AsyncTask of the web request for the movie reviews.
+     *
+     * @param model  The adapter of the RecyclerView.
+     * @param apiKey The key used for the movie database.
+     * @param id     The movie id.
+     */
+    protected void createReviewAsyncTask(ModelUpdate model, String apiKey, String id) {
+        new ReviewWebRequestTask(apiKey, model).start(id);
     }
 }
