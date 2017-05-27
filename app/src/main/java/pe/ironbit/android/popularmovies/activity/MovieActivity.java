@@ -14,6 +14,7 @@ import pe.ironbit.android.popularmovies.model.MovieData;
 import pe.ironbit.android.popularmovies.request.task.ReviewWebRequestTask;
 import pe.ironbit.android.popularmovies.request.task.VideoWebRequestTask;
 import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
+import pe.ironbit.android.popularmovies.view.review.ReviewAdapter;
 import pe.ironbit.android.popularmovies.view.video.VideoAdapter;
 
 /**
@@ -57,8 +58,8 @@ public class MovieActivity extends AppCompatActivity {
 
         // Configure review section
         {
-            //ModelUpdate model = configReviewRecyclerView();
-            //createReviewAsyncTask(model, apiKey, movie.getId());
+            ModelUpdate model = configReviewRecyclerView();
+            createReviewAsyncTask(model, apiKey, movie.getId());
         }
     }
 
@@ -105,7 +106,7 @@ public class MovieActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        VideoAdapter adapter = new VideoAdapter();
+        ReviewAdapter adapter = new ReviewAdapter();
         recyclerView.setAdapter(adapter);
 
         return adapter;

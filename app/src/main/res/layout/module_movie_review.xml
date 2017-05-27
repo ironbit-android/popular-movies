@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_link_black_48dp"/>
+
+        <TextView
+            android:id="@+id/module_movie_review_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginLeft="6dp"
+            android:layout_gravity="center_vertical"
+            tools:text="Author"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/module_movie_review_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:ellipsize="end"
+        android:textSize="16sp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        tools:text="@string/movie_activity_synopsis_sample" />
+
+</LinearLayout>

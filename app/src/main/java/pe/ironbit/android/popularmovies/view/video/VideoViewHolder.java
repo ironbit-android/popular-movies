@@ -6,22 +6,20 @@ import android.widget.TextView;
 
 import pe.ironbit.android.popularmovies.R;
 
-/**
- *
- */
 public class VideoViewHolder extends RecyclerView.ViewHolder {
     /**
-     *
+     * The name of the video.
      */
     private TextView mName;
 
     /**
-     *
+     * The type of the video.
      */
     private TextView mType;
 
     /**
-     * @param itemView
+     * Unique constructor.
+     * @param itemView the holder view.
      */
     public VideoViewHolder(View itemView) {
         super(itemView);
@@ -31,8 +29,10 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * @param name
-     * @param type
+     * Populate data for the holder.
+     *
+     * @param name the name of the video.
+     * @param type the type of the video.
      */
     public void bind(String name, String type) {
         mName.setText(name);

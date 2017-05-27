@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.view.video;
+package pe.ironbit.android.popularmovies.view.review;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,37 +10,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.ironbit.android.popularmovies.R;
-import pe.ironbit.android.popularmovies.model.video.VideoData;
+import pe.ironbit.android.popularmovies.model.review.ReviewData;
 import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
+import pe.ironbit.android.popularmovies.view.video.VideoViewHolder;
 
-public class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder>
-                          implements ModelUpdate {
+public class ReviewAdapter
+        extends RecyclerView.Adapter<ReviewViewHolder>
+        implements ModelUpdate {
     /**
      * Collection of the data.
      */
-    private List<VideoData> mList;
+    private List<ReviewData> mList;
 
     /**
      * Unique constructor.
      */
-    public VideoAdapter() {
+    public ReviewAdapter() {
         mList = new ArrayList<>();
     }
 
     @Override
-    public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
 
-        View view = LayoutInflater.from(context).inflate(R.layout.module_movie_video, parent, false);
-        VideoViewHolder viewHolder = new VideoViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.module_movie_review, parent, false);
+        ReviewViewHolder viewHolder = new ReviewViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(VideoViewHolder holder, int position) {
-        VideoData data = mList.get(position);
-        holder.bind(data.getName(), data.getType());
+    public void onBindViewHolder(ReviewViewHolder holder, int position) {
+        ReviewData data = mList.get(position);
+        holder.bind(data.getAuthor(), data.getContent(), data.getUrl());
     }
 
     @Override
