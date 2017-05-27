@@ -42,14 +42,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
 
     /**
      * Unique constructor.
-     * @param context        The context of the activity.
      * @param recyclerView   The main container.
      * @param imageUri       The uri for retrieve images from internet.
      * @param imageSize      The size of the images.
      */
-    public MovieAdapter(final Context context, final RecyclerView recyclerView, String imageUri, String imageSize) {
+    public MovieAdapter(final RecyclerView recyclerView, String imageUri, String imageSize) {
         mMovies = new ArrayList<>();
-        mImageAdapter = new ImageAdapter(context, imageUri, imageSize);
+        mImageAdapter = new ImageAdapter(recyclerView.getContext(), imageUri, imageSize);
 
         mOnClickListener = new View.OnClickListener() {
             @Override
@@ -59,11 +58,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
                 MovieData movie = mMovies.get(index);
 
                 // create intent and put movie data.
-                Intent intent = new Intent(context, MovieActivity.class);
+                Intent intent = new Intent(recyclerView.getContext(), MovieActivity.class);
                 intent.putExtra(MovieData.class.getSimpleName(), movie);
 
                 // call the new activity.
-                context.startActivity(intent);
+                recyclerView.getContext().startActivity(intent);
             }
         };
     }

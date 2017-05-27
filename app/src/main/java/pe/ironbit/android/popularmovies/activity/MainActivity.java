@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // create adapter and register it
-        mMovieAdapter = new MovieAdapter(getApplicationContext(), recyclerView, ImageSettings.URI, ImageSettings.W185);
+        mMovieAdapter = new MovieAdapter(recyclerView, ImageSettings.URI, ImageSettings.W185);
         recyclerView.setAdapter(mMovieAdapter);
 
         // create AsyncTask and update MovieAdapter
