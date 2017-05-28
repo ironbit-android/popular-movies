@@ -9,9 +9,9 @@ public interface WebRequestService {
     /**
      * Perform the web request service.
      *
-     * @param apiKey  value required for access to movie database.
-     * @param movieId optional value that is the movie id.
-     * @return
+     * @param apiKey value required for access to movie database.
+     * @param param  optional value.
+     * @return       collection of data.
      */
-    List makeWebRequest(String apiKey, String movieId);
+    List makeWebRequest(String apiKey, String param);
 }

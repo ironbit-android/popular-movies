@@ -37,4 +37,16 @@ public final class WebRequestContract {
      * https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>
      */
     public static final String REQUEST_REVIEW_PATH = "reviews";
+
+    /**
+     * Used for popular movies request (MovieDB - Movies - Get Popular).
+     * https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>
+     */
+    public static final String REQUEST_MOVIE_POPULAR_PATH = "popular";
+
+    /**
+     * Used for top rated movies request (MovieDB - Movies - Get Top Rated).
+     * https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>
+     */
+    public static final String REQUEST_MOVIE_TOP_RATED_PATH = "top_rated";
 }

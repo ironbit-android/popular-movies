@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.view;
+package pe.ironbit.android.popularmovies.view.movie;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,18 +13,19 @@ import java.util.List;
 import pe.ironbit.android.popularmovies.R;
 import pe.ironbit.android.popularmovies.activity.MovieActivity;
 import pe.ironbit.android.popularmovies.images.ImageAdapter;
-import pe.ironbit.android.popularmovies.model.MovieData;
+import pe.ironbit.android.popularmovies.model.movie.MovieData;
+import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
 
 /**
  * Used in RecyclerView.
  * It contains the data.
  * It creates the ViewHolders.
  * It updates the ViewHolders.
- *
  */
 public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implements ModelUpdate {
     /**
      * Helper class for image resources.
+     *
      * @see pe.ironbit.android.popularmovies.images.ImageAdapter
      */
     private ImageAdapter mImageAdapter;
@@ -42,9 +43,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
 
     /**
      * Unique constructor.
-     * @param recyclerView   The main container.
-     * @param imageUri       The uri for retrieve images from internet.
-     * @param imageSize      The size of the images.
+     *
+     * @param recyclerView The main container.
+     * @param imageUri     The uri for retrieve images from internet.
+     * @param imageSize    The size of the images.
      */
     public MovieAdapter(final RecyclerView recyclerView, String imageUri, String imageSize) {
         mMovies = new ArrayList<>();
@@ -70,10 +72,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
     /**
      * From interface ModelUpdate.
      * Used to update the list of movies.
+     *
      * @param list {@link #mMovies}
      */
     @Override
-    public void updateList(List<MovieData> list) {
+    public void update(List list) {
         if (list == null) {
             return;
         }
@@ -86,6 +89,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
     /**
      * From RecyclerView.Adapter.
      * Creates new ViewHolder.
+     *
      * @param parent
      * @param viewType
      * @return ViewHolder
@@ -104,6 +108,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
     /**
      * From RecyclerView.Adapter.
      * It is used to update the ViewHolder
+     *
      * @param holder
      * @param position
      */
@@ -114,6 +119,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
 
     /**
      * Get the size of the data.
+     *
      * @return The size of the data.
      */
     @Override

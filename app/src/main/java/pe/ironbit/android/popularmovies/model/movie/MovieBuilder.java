@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.model;
+package pe.ironbit.android.popularmovies.model.movie;
 
 /**
  * Builder for Movie information.
@@ -72,6 +72,7 @@ public class MovieBuilder {
 
     /**
      * Set the original title.
+     *
      * @param originalTitle {@link #mOriginalTitle}
      * @return MovieBuilder
      */
@@ -82,6 +83,7 @@ public class MovieBuilder {
 
     /**
      * Set the movie poster.
+     *
      * @param posterPath {@link #mPosterPath}
      * @return MovieBuilder
      */
@@ -92,6 +94,7 @@ public class MovieBuilder {
 
     /**
      * Set the movie synopsis.
+     *
      * @param overview {@link #mOverview}
      * @return MovieBuilder
      */
@@ -102,6 +105,7 @@ public class MovieBuilder {
 
     /**
      * Set the acerage rating
+     *
      * @param voteAverage {@link #mVoteAverage}
      * @return MovieBuilder
      */
@@ -112,6 +116,7 @@ public class MovieBuilder {
 
     /**
      * Set the movie release date.
+     *
      * @param releaseDate {@link #mReleaseDate}
      * @return MovieBuilder
      */
@@ -122,6 +127,7 @@ public class MovieBuilder {
 
     /**
      * Create the movie class.
+     *
      * @return {@link MovieData}
      */
     public MovieData build() {

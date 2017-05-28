@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.view;
+package pe.ironbit.android.popularmovies.view.movie;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

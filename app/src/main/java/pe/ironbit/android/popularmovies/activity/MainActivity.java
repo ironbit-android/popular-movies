@@ -10,9 +10,9 @@ import android.view.MenuItem;
 
 import pe.ironbit.android.popularmovies.R;
 import pe.ironbit.android.popularmovies.images.ImageSettings;
-import pe.ironbit.android.popularmovies.request.Selector;
-import pe.ironbit.android.popularmovies.request.Task;
-import pe.ironbit.android.popularmovies.view.MovieAdapter;
+import pe.ironbit.android.popularmovies.contract.MovieContract;
+import pe.ironbit.android.popularmovies.request.task.MovieWebRequestTask;
+import pe.ironbit.android.popularmovies.view.movie.MovieAdapter;
 
 /**
  * It shows the movies in a grid matrix.
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         // create AsyncTask and update MovieAdapter
         mApiKey = getString(R.string.web_request_api_key);
-        new Task(mApiKey, mMovieAdapter).execute(Selector.createPopular());
+        new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
     }
 
     /**
@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int resourceId = item.getItemId();
         if (resourceId == R.id.menu_action_search_popular) {
-            new Task(mApiKey, mMovieAdapter).execute(Selector.createPopular());
+            new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
         }
         else if (resourceId == R.id.menu_action_search_toprated) {
-            new Task(mApiKey, mMovieAdapter).execute(Selector.createTopRated());
+            new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.TOP_RATED_MOVIES);
         }
         return super.onOptionsItemSelected(item);
     }

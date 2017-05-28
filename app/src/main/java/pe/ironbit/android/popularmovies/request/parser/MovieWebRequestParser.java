@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.request;
+package pe.ironbit.android.popularmovies.request.parser;
 
 import android.text.TextUtils;
 
@@ -9,28 +9,30 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import pe.ironbit.android.popularmovies.model.MovieBuilder;
-import pe.ironbit.android.popularmovies.model.MovieData;
+import pe.ironbit.android.popularmovies.model.movie.MovieBuilder;
+import pe.ironbit.android.popularmovies.model.movie.MovieData;
 
 /**
  * Helper class that transform json information to a list of movies.
  */
-public final class Formatter {
+public class MovieWebRequestParser implements WebRequestParser {
     /**
      * Method that transform ifnormation between json and movie.
-     * @param param Contains the json information
+     *
+     * @param response Contains the json information
      * @return List of Movies
      * @throws JSONException
      */
-    public static List<MovieData> extractJSON(String param) throws JSONException {
-        if (TextUtils.isEmpty(param)) {
+    @Override
+    public List parseData(String response) throws JSONException {
+        if (TextUtils.isEmpty(response)) {
             return null;
         }
 
         MovieBuilder builder = new MovieBuilder();
         List<MovieData> movies = new ArrayList<>();
 
-        JSONObject document = new JSONObject(param);
+        JSONObject document = new JSONObject(response);
         JSONArray results = document.getJSONArray("results");
 
         for (int index = 0; index < results.length(); ++index) {

@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.model;
+package pe.ironbit.android.popularmovies.model.movie;
 
 /**
  * Helper class for creation of MovieData and MovieDecorator classes.
@@ -13,6 +13,7 @@ public final class MovieFactory {
 
     /**
      * Factory method used to create MovieData objects.
+     *
      * @param id            {@link MovieData#mId}
      * @param originalTitle {@link MovieData#mOriginalTitle}
      * @param posterPath    {@link MovieData#mPosterPath}
@@ -32,6 +33,7 @@ public final class MovieFactory {
 
     /**
      * Factory method used to create MovieDecorator objects from MovieData arguments.
+     *
      * @param id            {@link MovieData#mId}
      * @param originalTitle {@link MovieData#mOriginalTitle}
      * @param posterPath    {@link MovieData#mPosterPath}
@@ -51,6 +53,7 @@ public final class MovieFactory {
 
     /**
      * Factory method used to create MovieDecorator objects from MovieData.
+     *
      * @param movieData {@link MovieData}
      * @return {@link MovieDecorator}
      */

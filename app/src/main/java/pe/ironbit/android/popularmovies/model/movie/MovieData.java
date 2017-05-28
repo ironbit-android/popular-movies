@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.model;
+package pe.ironbit.android.popularmovies.model.movie;
 
 import java.io.Serializable;
 
@@ -77,6 +77,7 @@ public class MovieData implements Serializable {
 
     /**
      * Get original movie title.
+     *
      * @return {@link #mOriginalTitle}
      */
     public String getOriginalTitle() {
@@ -85,6 +86,7 @@ public class MovieData implements Serializable {
 
     /**
      * Get the movie poster.
+     *
      * @return {@link #mPosterPath}
      */
     public String getPosterPath() {
@@ -93,6 +95,7 @@ public class MovieData implements Serializable {
 
     /**
      * Get the movie synopsis.
+     *
      * @return {@link #mOverview}
      */
     public String getOverview() {
@@ -102,6 +105,7 @@ public class MovieData implements Serializable {
     /**
      * Get user rating of the movie.
      * Double number #0.0 format.
+     *
      * @return {@link #mVoteAverage}
      */
     public double getVoteAverage() {
@@ -110,6 +114,7 @@ public class MovieData implements Serializable {
 
     /**
      * Get release date of the movie.
+     *
      * @return {@link #mReleaseDate}
      */
     public String getReleaseDate() {

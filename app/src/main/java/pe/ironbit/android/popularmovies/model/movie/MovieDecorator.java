@@ -1,4 +1,4 @@
-package pe.ironbit.android.popularmovies.model;
+package pe.ironbit.android.popularmovies.model.movie;
 
 import java.text.SimpleDateFormat;
 
@@ -32,6 +32,7 @@ public class MovieDecorator {
     /**
      * Constructor.
      * Inject the MovieData information.
+     *
      * @param movieData {@link #mMovieData}
      */
     public MovieDecorator(MovieData movieData) {
@@ -40,6 +41,7 @@ public class MovieDecorator {
 
     /**
      * Set the date format in the MovieData class.
+     *
      * @param pattern {@link #mOldDatePattern}
      */
     public void setOldDatePattern(String pattern) {
@@ -48,6 +50,7 @@ public class MovieDecorator {
 
     /**
      * Set the new date format.
+     *
      * @param pattern {@link #mNewDatePattern}
      */
     public void setNewDatePattern(String pattern) {
@@ -56,6 +59,7 @@ public class MovieDecorator {
 
     /**
      * Get the release date in the new format.
+     *
      * @return {@link #mReleaseDate}
      * @throws java.text.ParseException
      */
@@ -65,6 +69,7 @@ public class MovieDecorator {
 
     /**
      * Get the release date in the new format using the parameter format.
+     *
      * @param pattern The new date release format.
      * @return {@link #mReleaseDate}
      * @throws java.text.ParseException

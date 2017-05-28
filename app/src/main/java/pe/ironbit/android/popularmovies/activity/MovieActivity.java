@@ -10,7 +10,7 @@ import android.widget.TextView;
 import pe.ironbit.android.popularmovies.R;
 import pe.ironbit.android.popularmovies.images.ImageAdapter;
 import pe.ironbit.android.popularmovies.images.ImageSettings;
-import pe.ironbit.android.popularmovies.model.MovieData;
+import pe.ironbit.android.popularmovies.model.movie.MovieData;
 import pe.ironbit.android.popularmovies.request.task.ReviewWebRequestTask;
 import pe.ironbit.android.popularmovies.request.task.VideoWebRequestTask;
 import pe.ironbit.android.popularmovies.view.base.ModelUpdate;
