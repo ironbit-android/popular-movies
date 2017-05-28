@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         else if (resourceId == R.id.menu_action_search_toprated) {
             new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.TOP_RATED_MOVIES);
         }
+        else if (resourceId == R.id.menu_action_search_favorite) {
+            // entry point for favorite movie action.
+        }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -20,6 +20,9 @@
     <!-- Action Bar | label of icon 'search action toprated' -->
     <string name="menu_action_search_toprated">Top Rated</string>
 
+    <!-- Action Bar | label of icon 'search action toprated' -->
+    <string name="menu_action_search_favorite">Favorite</string>
+
     <!-- Movie Activity -->
     <string name="movie_activity_release_date">Release Date</string>
 
