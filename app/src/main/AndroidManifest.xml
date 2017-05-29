@@ -27,6 +27,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pe.ironbit.android.popularmovies.activity.MainActivity" />
         </activity>
+        <provider
+            android:name=".storage.provider.MovieStorageProvider"
+            android:authorities="pe.ironbit.android.popularmovies"
+            android:exported="false"/>
     </application>
 
 </manifest>

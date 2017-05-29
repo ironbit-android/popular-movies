@@ -77,12 +77,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> implemen
      */
     @Override
     public void update(List list) {
+        mMovies.clear();
+
         if (list == null) {
             return;
         }
-
-        mMovies.clear();
         mMovies = list;
+
         notifyDataSetChanged();
     }
 

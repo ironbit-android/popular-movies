@@ -1,6 +1,8 @@
 package pe.ironbit.android.popularmovies.activity;
 
+import android.app.LoaderManager;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,16 +10,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 import pe.ironbit.android.popularmovies.R;
-import pe.ironbit.android.popularmovies.images.ImageSettings;
 import pe.ironbit.android.popularmovies.contract.MovieContract;
+import pe.ironbit.android.popularmovies.images.ImageSettings;
 import pe.ironbit.android.popularmovies.request.task.MovieWebRequestTask;
+import pe.ironbit.android.popularmovies.storage.base.MovieStorageContract;
+import pe.ironbit.android.popularmovies.storage.listerner.OnEventStorageListListener;
+import pe.ironbit.android.popularmovies.storage.loader.MainStorageLoader;
 import pe.ironbit.android.popularmovies.view.movie.MovieAdapter;
 
 /**
  * It shows the movies in a grid matrix.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnEventStorageListListener {
     /**
      * Required for Web Request for MovieDB.
      * The key must be set in the string.xml file in 'web_request_api_key'
@@ -43,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
      * View Adapter used to store information retrieved from internet
      */
     private MovieAdapter mMovieAdapter;
+
+    /**
+     * Interface for the loader.
+     */
+    LoaderManager.LoaderCallbacks<Cursor> mLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +83,13 @@ public class MainActivity extends AppCompatActivity {
         // create AsyncTask and update MovieAdapter
         mApiKey = getString(R.string.web_request_api_key);
         new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
+
+        // Loader
+        mLoader = new MainStorageLoader(getApplicationContext(), this);
     }
 
     /**
      * Initialization of the Menu.
-     * @param menu
-     * @return
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,21 +99,29 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Executed when an action was performed in the menu.
-     * @param item Id of the resource.
-     * @return
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int resourceId = item.getItemId();
         if (resourceId == R.id.menu_action_search_popular) {
             new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
-        }
-        else if (resourceId == R.id.menu_action_search_toprated) {
+        } else if (resourceId == R.id.menu_action_search_toprated) {
             new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.TOP_RATED_MOVIES);
-        }
-        else if (resourceId == R.id.menu_action_search_favorite) {
-            // entry point for favorite movie action.
+        } else if (resourceId == R.id.menu_action_search_favorite) {
+            getLoaderManager().restartLoader(MovieStorageContract.LOADER_IDENTIFIER, null, mLoader);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * From OnEventStorageListListener interface.
+     */
+    @Override
+    public void onEventStorageAction(List list) {
+        if (list == null) {
+            return;
+        }
+
+        mMovieAdapter.update(list);
     }
 }
