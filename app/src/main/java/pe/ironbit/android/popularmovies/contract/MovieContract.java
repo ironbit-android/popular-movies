@@ -26,4 +26,9 @@ public final class MovieContract {
      * Option favorite movies.
      */
     public static String FAVORITE_MOVIES = "Favorite";
+
+    /**
+     * Key for saving state for the MainActivity.
+     */
+    public static String KEY_OPTION_MOVIES = "Option Movies";
 }

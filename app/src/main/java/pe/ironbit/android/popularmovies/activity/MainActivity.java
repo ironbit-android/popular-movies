@@ -1,12 +1,15 @@
 package pe.ironbit.android.popularmovies.activity;
 
 import android.app.LoaderManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,6 +28,11 @@ import pe.ironbit.android.popularmovies.view.movie.MovieAdapter;
  * It shows the movies in a grid matrix.
  */
 public class MainActivity extends AppCompatActivity implements OnEventStorageListListener {
+    /**
+     * Sets the type of movies (popular, top rated and favorites).
+     */
+    private String mOptionSelected;
+
     /**
      * Required for Web Request for MovieDB.
      * The key must be set in the string.xml file in 'web_request_api_key'
@@ -80,12 +88,18 @@ public class MainActivity extends AppCompatActivity implements OnEventStorageLis
         mMovieAdapter = new MovieAdapter(recyclerView, ImageSettings.URI, ImageSettings.W185);
         recyclerView.setAdapter(mMovieAdapter);
 
-        // create AsyncTask and update MovieAdapter
+        // assign api key.
         mApiKey = getString(R.string.web_request_api_key);
-        new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
 
         // Loader
         mLoader = new MainStorageLoader(getApplicationContext(), this);
+
+        // Restore saved data.
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        mOptionSelected = preferences.getString(MovieContract.KEY_OPTION_MOVIES, MovieContract.POPULAR_MOVIES);
+
+        // Display information.
+        displayMovies();
     }
 
     /**
@@ -102,14 +116,21 @@ public class MainActivity extends AppCompatActivity implements OnEventStorageLis
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String optionSelected = null;
         int resourceId = item.getItemId();
+
         if (resourceId == R.id.menu_action_search_popular) {
-            new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
+            optionSelected = MovieContract.POPULAR_MOVIES;
         } else if (resourceId == R.id.menu_action_search_toprated) {
-            new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.TOP_RATED_MOVIES);
+            optionSelected = MovieContract.TOP_RATED_MOVIES;
         } else if (resourceId == R.id.menu_action_search_favorite) {
-            getLoaderManager().restartLoader(MovieStorageContract.LOADER_IDENTIFIER, null, mLoader);
+            optionSelected = MovieContract.FAVORITE_MOVIES;
         }
+
+        if (updateOptionSelected(optionSelected)) {
+            displayMovies();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -123,5 +144,44 @@ public class MainActivity extends AppCompatActivity implements OnEventStorageLis
         }
 
         mMovieAdapter.update(list);
+    }
+
+    /**
+     * Update variable 'mOptionSelected'.
+     *
+     * @param value the new value of the 'OptionSelected'.
+     * @return true whether the variable 'OptionSelected' changed.
+     */
+    protected boolean updateOptionSelected(String value) {
+        if (value == null) {
+            return false;
+        }
+        if (mOptionSelected != null) {
+            if (TextUtils.equals(mOptionSelected, value)) {
+                return false;
+            }
+        }
+        mOptionSelected = value;
+
+        SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
+        editor.putString(MovieContract.KEY_OPTION_MOVIES, mOptionSelected).commit();
+        return true;
+    }
+
+    /**
+     * Select display action according to variable 'mOptionSelected'.
+     */
+    protected void displayMovies() {
+        if (TextUtils.equals(mOptionSelected, MovieContract.POPULAR_MOVIES)) {
+            new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.POPULAR_MOVIES);
+            return;
+        }
+        if (TextUtils.equals(mOptionSelected, MovieContract.TOP_RATED_MOVIES)) {
+            new MovieWebRequestTask(mApiKey, mMovieAdapter).start(MovieContract.TOP_RATED_MOVIES);
+            return;
+        }
+        if (TextUtils.equals(mOptionSelected, MovieContract.FAVORITE_MOVIES)) {
+            getLoaderManager().restartLoader(MovieStorageContract.LOADER_IDENTIFIER, null, mLoader);
+        }
     }
 }
