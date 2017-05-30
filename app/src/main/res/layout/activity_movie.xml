@@ -25,6 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -47,18 +48,14 @@
                     android:id="@+id/movie_favorite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="actionMovieFavorite"
                     android:paddingBottom="16dp"
                     android:scaleType="center"
-                    android:onClick="actionMovieFavorite"
-                    tools:src="@drawable/ic_star_border_black_48dp"/>
+                    tools:src="@drawable/ic_star_border_black_48dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingBottom="2dp"
-                    android:text="@string/movie_activity_release_date"
-                    android:textSize="16sp" />
+                    style="@style/styleTitles"
+                    android:text="@string/movie_activity_release_date" />
 
                 <TextView
                     android:id="@+id/movie_date"
@@ -70,13 +67,8 @@
                     tools:text="2016" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingBottom="2dp"
-                    android:paddingTop="8dp"
-                    android:text="@string/movie_activity_vote_average"
-                    android:textSize="16sp" />
+                    style="@style/styleTitles"
+                    android:text="@string/movie_activity_vote_average" />
 
                 <TextView
                     android:id="@+id/movie_rating"
@@ -93,16 +85,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="2dp"
-                android:text="@string/movie_activity_movie_synopsis"
-                android:textSize="16sp" />
+                style="@style/styleTitles"
+                android:text="@string/movie_activity_movie_synopsis" />
 
             <TextView
                 android:id="@+id/movie_synopsis"
@@ -116,34 +105,40 @@
 
         </LinearLayout>
 
-
-        <android.support.v4.widget.NestedScrollView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_movie_viewgroup_height"
-            android:fillViewport="true"
-            android:padding="16dp"
-            android:scrollbars="vertical">
+            android:layout_height="2dp"
+            android:layout_margin="16dp"
+            android:background="@color/blue_grey_700" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/activity_movie_review_section"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <TextView
+            style="@style/styleTitles"
+            android:text="@string/movie_activity_reviews" />
 
-        </android.support.v4.widget.NestedScrollView>
-
-        <android.support.v4.widget.NestedScrollView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_movie_review_section"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_movie_viewgroup_height"
-            android:fillViewport="true"
-            android:padding="16dp"
-            android:scrollbars="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/activity_movie_video_section"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="16dp"
+            android:background="@color/blue_grey_700" />
 
-        </android.support.v4.widget.NestedScrollView>
+        <TextView
+            style="@style/styleTitles"
+            android:text="@string/movie_activity_videos" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_movie_video_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
 
     </LinearLayout>
 
